@@ -28,7 +28,6 @@ def randomPassword(inputLetters, inputNumbers, inputSymbols):
     symbolsRandom = random.choices(symbols, k=inputSymbols)
 
     password = (lettersRandom + numbersRandom + symbolsRandom)
-    print(password)
     return password
 
 def passwordFinal(password):
