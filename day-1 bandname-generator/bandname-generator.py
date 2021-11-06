@@ -8,4 +8,4 @@ city = input("What's the name of the city you grew up in?\n").strip()
 pet = input("What is your pet's name?\n").strip()
 
 # Printing out band name
-print("Your band name could be " + city + ' ' + pet +'.')
+print("Your band name could be " + city + "'s " + pet +'.')
