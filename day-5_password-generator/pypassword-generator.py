@@ -2,8 +2,8 @@ import random
 
 def ascii_name_plaque(name):
      '''(str)->None
-     Takes a name as an input, prints out a name plaque
-     Preconditions: Name is a string, any quotes in the name must be single quotes
+     Takes a string as an input, prints out a name plaque
+     Preconditions: name is a string, any quotes in the name must be single quotes
      '''
      length = len(name)
      print(5*"*" + length*('*') + 5*"*")
@@ -13,7 +13,7 @@ def ascii_name_plaque(name):
      print(5*"*" + length*('*') + 5*"*")
 
 def randomPassword(inputLetters, inputNumbers, inputSymbols):
-    '''(int, int, int)->list
+    '''(int, int, int)->list of str
     Takes three integers representing how many numbers, letters, and symbols the user wants in the password.
     Returns a list of randomly generated elements with a certain number of numbers, letters, and symbols.
     Preconditions: inputLetters, inputNumbers, and inputSymbols are integers
@@ -36,8 +36,8 @@ def randomPassword(inputLetters, inputNumbers, inputSymbols):
     return password
 
 def passwordFinal(password):
-    '''(list)->str
-    Takes a list of strings and returns a string with all the items concatenated.
+    '''(list of str)->str
+    Takes a list of strings and returns a string with all the items concatenated into a single string.
     Preconditions: password is a list of strings
     '''
     finalPassword = ''
