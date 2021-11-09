@@ -13,6 +13,11 @@ def ascii_name_plaque(name):
      print(5*"*" + length*('*') + 5*"*")
 
 def randomPassword(inputLetters, inputNumbers, inputSymbols):
+    '''(int, int, int)->list
+    Takes three integers representing how many numbers, letters, and symbols the user wants in the password.
+    Returns a list of randomly generated elements with a certain number of numbers, letters, and symbols.
+    Preconditions: inputLetters, inputNumbers, and inputSymbols are integers
+    '''
     letters = [
         'a','b','c','d','e', 'f', 'g', 'h', 'i', 'j', 'k', 
         'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
