@@ -1,6 +1,9 @@
 import random
 
 def hangman_art():
+    '''(None)->None
+    Prints a hangman greeting ASCII art.
+    '''
     print('''
      _                                             
     | |                                            
@@ -25,6 +28,10 @@ def ascii_name_plaque(name):
     print(5*"*" + length*('*') + 5*"*")
 
 def randomWord():
+    '''(None)->str
+    Function gets input of the category from the user.
+    Returns a randomly generated word from the category chosen by the user.  
+    '''
     animals = ['cat', 'dog', 'snake', 'bear', 'bat', 'bee', 'deer', 'duck',
     'goose', 'dove', 'tiger', 'lion', 'monkey', 'spider', 'squirrel', 'bird',
     'elephant', 'falcon', 'butterfly', 'ferret', 'guinea pig']
@@ -57,6 +64,10 @@ def randomWord():
     return word
 
 def getInput():
+    '''(None)->str
+    Function gets input from the user. The input is a letter guessed for the word.
+    Returns the letter.
+    '''
     letter = input("Enter a letter: ").lower().strip()
     if len(letter)!=1:
         print("Invalid input. Please enter a single character.")
@@ -64,21 +75,30 @@ def getInput():
     return letter
 
 def listToString(n):
+    '''(list of str)->str
+    Function takes a list of strings as input.
+    Concatenates the items of the list into a single string.
+    Returns the string to the user.
+    Preconditions: The input, n, is a list of strings.
+    '''
     s = ''
     for i in range(len(n)):
         s = s + n[i]
     return s
 
 def numberOfLetters(n):
-    '''(str)->number
-    Function takes a string as input, n. It computes the number of characters that are not '_' in the string.
-    Returns the number of characters that are not '_'.
+    '''(str)->number or str
+    Function takes a string as input, n. It computes the number of characters that are '_' in the string.
+    Returns the number of characters that are '_'.
     '''
     count = 0
     for i in n:
-        if i != '_':
+        if i == '_':
             count+=1
-    return count
+    if count > 0:
+        return count
+    elif count==0:
+        return 'no letters'
 
 HANGMAN_PIC = ['''
   +---+
@@ -156,7 +176,9 @@ for i in range(len(word)):
 print(HANGMAN_PIC[0])
 print("Try to guess the word right and save the hangman!")
 print(f"Your word has {len(blank)} letters: {listToString(blank)}")
+print()
 
+# User Guesses
 while '_' in blank and lives>0:
     letter = getInput()
     if letter in word:
@@ -164,13 +186,18 @@ while '_' in blank and lives>0:
         for i in range(len(word)):
             if word[i]==letter:
                 blank[i]=letter
-        print(listToString(blank))
+        print(f"You have {numberOfLetters(blank)} left to guess: {listToString(blank)}")
+        print(HANGMAN_PIC[6-lives])
+        print()
     else:
         lives = lives - 1
         print("You guessed incorrectly.")
         print(f"You lost a life. You now have {lives} lives.")
+        print(f"You have {numberOfLetters(blank)} left to guess: {listToString(blank)}")
         print(HANGMAN_PIC[6-lives])
+        print()
 
+# End Game 
 if lives==0:
     print(f"You lost! That's ok, {name}, you can try again.")
 elif '_' not in blank:
