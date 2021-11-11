@@ -181,17 +181,24 @@ print()
 # User Guesses
 while '_' in blank and lives>0:
     letter = getInput()
+    # If User guessess correct letter 
     if letter in word:
         print("You guessed correctly.")
-        for i in range(len(word)):
-            if word[i]==letter:
-                blank[i]=letter
+        # Replaces the letter from the underscore 
+        if letter in blank:
+            print("But...you already guessed this before!")
+        else:
+            for i in range(len(word)):
+                if word[i]==letter:
+                    blank[i]=letter
+        # Number of letters left to guess
         print(f"You have {numberOfLetters(blank)} left to guess: {listToString(blank)}")
         print(HANGMAN_PIC[6-lives])
         print()
+    # If user guesses wrong, reduces lives
     else:
         lives = lives - 1
-        print("You guessed incorrectly.")
+        print(f"You guessed {letter}, that's not in the word.")
         print(f"You lost a life. You now have {lives} lives.")
         print(f"You have {numberOfLetters(blank)} left to guess: {listToString(blank)}")
         print(HANGMAN_PIC[6-lives])
