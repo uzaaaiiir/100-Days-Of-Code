@@ -43,15 +43,19 @@ def randomWord():
     sports = ['badminton', 'baseball', 'basketball', 'bowling', 'cycling', 'dodgeball'
     'fencing', 'football', 'golf', 'boxing', 'hockey', 'rowing', 'rugby', 'soccer',
     'skiing', 'snowboarding', 'swimming', 'tennis', 'volleyball', 'wresting']
+    flag=True
 
-    try:
-        category = int(input("Please enter a category to start guessing: \n1 for Animals\n2 for Food\n3 for Movies\n4 for Sports\n"))
-        if category not in [1,2,3,4]:
-            print("Please only enter numbers in 1, 2, 3, or 4.")
-            randomWord()
-    except:
-        print('Please enter a number.')
-        randomWord()
+    while flag:
+        try:
+            category = int(input("Please enter a category to start guessing: \n1 for Animals\n2 for Food\n3 for Movies\n4 for Sports\n"))
+            if category in [1,2,3,4]:
+                flag = False
+            else:
+                print("Please only enter numbers in 1, 2, 3, or 4.")
+                print()
+        except:
+            print('Please enter a number.')
+            print()
     
     if category==1:
         word = random.choice(animals)
@@ -206,6 +210,7 @@ while '_' in blank and lives>0:
 
 # End Game 
 if lives==0:
-    print(f"You lost! That's ok, {name}, you can try again.")
+    print(f"You lost! The correct word was {word}")
+    print(f"That's ok, {name}, you can try again.")
 elif '_' not in blank:
     print("Congratulations, you won!")
