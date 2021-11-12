@@ -11,5 +11,34 @@ a8"     "" 88P'   "Y8 `8b     d8' 88P'    "8a  88   a8"     "8a a8"    `Y88 8b,d
                                                                                                  88                         d8'      
 '''
 
+def encode(plainText, key):
+    '''(str,number)->str
+    Given a plain text and key, the function encrypts the plaintext.
+    Encrypts by shifting the plaintext characters forward by key number.
+    Returns the ciphertext.
+    Preconditions: plainText is a string, key is an integer.
+    '''
+    pass 
+
+def decode(cipherText, key):
+    '''(str,number)->str
+    Given a cipher text and key, the function decodes the cipher text.
+    Encrypts by shifting the ciphertext characters backward by key number.
+        If key is greater than zero, shifts the ciphertext backward.
+        If the key is less than zero, shifts the ciphertext forward.
+    Returns the plain text.
+    Preconditions: cipherText is a string, key is an integer.
+    '''
+
+def getInput():
+    '''(None)->str,str,number
+    Function gets the type of encryption the user wants to do: encoding or decoding.
+    Function prompts the usre for the text they want to encode or decode.
+    Function prompts the user for the key by which to shift the plain text or cipher text.
+    Returns the encryption type, message, and key.
+    Preconditions: None
+    '''
+    type = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower().strip()
+
 print(caesar_cipher)
 
