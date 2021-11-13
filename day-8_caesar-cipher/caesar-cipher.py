@@ -18,7 +18,10 @@ def encode(plainText, key):
     Returns the ciphertext.
     Preconditions: plainText is a string, key is an integer.
     '''
-    pass 
+    plainText = strToList(plainText)
+    for i in range(len(plainText)):
+        pass
+    
 
 def decode(cipherText, key):
     '''(str,number)->str
@@ -39,6 +42,15 @@ def getInput():
     Preconditions: None
     '''
     type = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower().strip()
+
+def strToList(str):
+    '''(str)->list
+    Function takes a string as input and returns a list where each element is a character from the string.
+    '''
+    text = []
+    for i in range(len(str)):
+        text.append(str[i])
+    return text
 
 print(caesar_cipher)
 
