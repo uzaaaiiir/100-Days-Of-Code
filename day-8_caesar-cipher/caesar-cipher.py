@@ -86,6 +86,8 @@ def decode(cipherText, shift):
 
 print(caesar_cipher)
 
+flag = True
+
 while flag:
     user = input("Do you want to encrypt/decrypt a message?[yes/no] \n").lower().strip()
     print()
