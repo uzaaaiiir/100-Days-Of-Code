@@ -88,14 +88,38 @@ print(caesar_cipher)
 
 flag = True 
 while flag:
-    input("Do you want to encrypt/decrypt a message? 'n")
-type = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower().strip()
-text = input("Type your message:\n")
-shift = (int(input("Type the shift number:\n")))
+    user = input("Do you want to encrypt/decrypt a message?[yes/no] \n").lower().strip()
+    print()
+    if user=='yes':
+        flag1=True
+        while flag1:
+            type = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower().strip()
+            if type!='encode' and type!='decode':
+                print("Please enter 'encode' or 'decode'.")
+                print()
+            elif type in ['encode', 'decode']:
+                print()
+                flag1=False
+        text = input("Type your message:\n")
+        print()
+        flag2=True
+        while flag2:
+            try:
+                shift = (int(input("Type the shift number:\n")))
+                print()
+                flag2=False
+            except:
+                print('Please enter an int.')
+                print()
 
-if type=='encode':
-    messageEncoded = encode(text,shift)
-    print(f'The encoded text is {messageEncoded}')
-elif type=='decode':
-    messageDecoded = decode(text,shift)
-    print(f'The decoded message is {messageDecoded}')
+        if type=='encode':
+            messageEncoded = encode(text,shift)
+            print(f'The encoded text is {messageEncoded}')
+        elif type=='decode':
+            messageDecoded = decode(text,shift)
+            print(f'The decoded message is {messageDecoded}')
+    elif user=='no':
+        print('No problem, thank you!')
+        flag=False
+    else: 
+        print('Please enter yes or no.')
