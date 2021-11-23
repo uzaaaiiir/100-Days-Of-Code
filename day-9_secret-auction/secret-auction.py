@@ -30,7 +30,7 @@ def getBid():
     flag = True
     while flag: 
         try:
-            bid = float(input("What's your bid? "))
+            bid = float(input("What's your bid? $"))
             flag = False 
         except: 
             print("Please enter a number.")
@@ -48,6 +48,7 @@ def secret_auction():
         name = getName()
         bid = getBid()
         users[name]=bid 
+
         newUser = input("Are there any other bidders? Type 'yes' or 'no': ").lower().strip()
         if newUser=='yes':
             print("\033c")
@@ -73,9 +74,12 @@ def winnerOfBid(userInputs):
 
 # main
 art()
+
 print("Welcome to the secret auction program.")
 userInputs = secret_auction()
 winner = winnerOfBid(userInputs)
+
 for key in userInputs:
     print(f"{key}: {userInputs[key]}")
+
 print(f"The winner of the auction is {winner}, with a bid of ${int(userInputs[winner])}.")
