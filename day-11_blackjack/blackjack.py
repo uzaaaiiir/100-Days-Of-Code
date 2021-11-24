@@ -87,10 +87,6 @@ def blackjack():
     player2 = []
     deal2Cards(player1, player2, deck)
     checkScores = check(player1, player2)
-    
-
-    
-    
 
 flag = True 
 while flag:
