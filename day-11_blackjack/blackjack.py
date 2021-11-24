@@ -8,14 +8,15 @@ def blackjackArt():
     | \  /|K /\  |     | '_ \| |/ _` |/ __| |/ / |/ _` |/ __| |/ /
     |  \/ | /  \ |     | |_) | | (_| | (__|   <| | (_| | (__|   < 
     `-----| \  / |     |_.__/|_|\__,_|\___|_|\_\ |\__,_|\___|_|\_\\
-        |  \/ K|                            _/ |                
-        `------'                           |__/           
+          |  \/ K|                            _/ |                
+          `------'                           |__/           
     """
     print(logo)
 
 def makeDeck():
     '''(None)->list of str
     Function returns a list representing a deck of cards in the format (rank + suit)
+    Shuffles the deck before returning.
     '''
     deck = []
     ranks = ['2', '3', '4', '5', '6', '7', '8', '9', 'J', 'K', 'Q', 'A']
@@ -23,23 +24,9 @@ def makeDeck():
     for rank in ranks:
         for suit in suits:
             deck.append(rank+suit)
+    random.shuffle(deck)
     return deck 
 
-def deal2Cards(player1, player2, deck):
-    '''(list,list)->None
-    Function takes two lists representing the players cards and a deck.
-    Deals two cards to each player and removes them from the deck.
-    '''
-    x1 = random.randint(0,len(deck)-1)
-    player1.append(deck.pop(x1))
-    x2 = random.randint(0,len(deck)-1)
-    player1.append(deck.pop(x2))
-
-    y1 = random.randint(0,len(deck)-1)
-    player2.append(deck.pop(y1))
-    y2 = random.randint(0,len(deck)-1)
-    player2.append(deck.pop(y2))
-    
 
 def check(user1, user2):
     '''(list, list)->dict
@@ -81,20 +68,54 @@ def check(user1, user2):
     return userDict
 
 # main
-def blackjack():
-    deck = makeDeck()
-    player1 = []
-    player2 = []
-    deal2Cards(player1, player2, deck)
-    checkScores = check(player1, player2)
+def blackjack(deck, player, dealer):
+    checkScores = check(player, dealer)
+    print(f"\tYour card: {player}, current score: {checkScores[1]}")
+    print(f"\tComputer's first card: {dealer[0]}")
 
+    if checkScores[1]==21 and checkScores[2]==21:
+        print("Draw!")
+        return
+    elif checkScores[1]==21:
+        print("You win!")
+        return
+    elif checkScores[2]==21:
+        print("You lose. Dealer wins!")
+        return
+    elif checkScores[1]>21:
+        print("You lose! You bust.")
+        return
+    elif checkScores[2]>21:
+        print("You win! Dealer bust.")
+        return
+
+
+    continueDeal = input("Type 'y' to get another card, type 'n' to pass: ").lower().strip()
+    flag = True 
+    while True:
+        if continueDeal=='y':
+            player.append(deck.pop())
+            flag = False 
+            blackjack(deck, player, dealer)
+        elif continueDeal=='n':
+            dealer.append(deck.pop())
+            flag = False
+            blackjack(deck,player,dealer)
+        else:
+            print("Please enter 'y' or 'n'.")
+    
 flag = True 
 while flag:
-    blackjackArt()
     playGame = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ").lower().strip()
     if playGame == 'y':
-        winner = blackjack()
+        print("\033c")
+        blackjackArt()
+        deck = makeDeck()
+        player = [deck.pop(), deck.pop()]
+        dealer = [deck.pop(), deck.pop()]
+        blackjack(deck, player, dealer)
     elif playGame == 'n':
-        pass
+        print("Thank you for playing. Goodbye!")
+        flag= False 
     else:
         print("Please enter 'y' or 'n'.")
