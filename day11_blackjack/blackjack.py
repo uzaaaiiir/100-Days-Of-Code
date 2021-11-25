@@ -64,7 +64,6 @@ def calculateScore(user):
                     score = score + 1
                 else:
                     score = score + 11
-    if score==21: return 0
     return score
 
 def compareScore(scorePlayer, scoreDealer):
