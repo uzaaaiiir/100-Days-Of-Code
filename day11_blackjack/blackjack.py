@@ -68,6 +68,12 @@ def calculateScore(user):
     return score
 
 def compareScore(scorePlayer, scoreDealer):
+    '''(int, int)->bool
+    Function compares two scores with 21.
+    If either value is equal to or over 21, the function returns False
+    Otherwise, returns True.
+    Precondition: scorePlayer and scoreDealer are both int. 
+    '''
     if scorePlayer==21 and scoreDealer==21:
         print("Draw!")
         return False
@@ -87,6 +93,11 @@ def compareScore(scorePlayer, scoreDealer):
         return True 
 
 def pickAnotherCard():
+    '''(None)->str
+    Function prompts the user to enter 'y' or 'n'.
+    If the user enters anything else, the function continues to prompt user.
+    The function returns a str with either 'y' or 'n'.
+    '''
     flag = True
     while flag:
         inputUser = input("Type 'y' to get another card, type 'n' to pass: ")
@@ -97,6 +108,9 @@ def pickAnotherCard():
     return inputUser  
 
 def blackjack():
+    '''(None)->None
+    Function runs the blackjack game. 
+    '''
     deck = makeDeck()
     player = [deck.pop(), deck.pop()]
     dealer = [deck.pop(), deck.pop()]
@@ -127,6 +141,7 @@ def blackjack():
 
 
 # main
+
 flag = True
 while flag:
     continuePlaying = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ").lower().strip()
