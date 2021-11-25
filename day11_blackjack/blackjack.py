@@ -1,4 +1,4 @@
-import random
+import random 
 
 def blackjackArt():
     logo = """
@@ -19,7 +19,7 @@ def makeDeck():
     Shuffles the deck before returning.
     '''
     deck = []
-    ranks = ['2', '3', '4', '5', '6', '7', '8', '9', 'J', 'K', 'Q', 'A']
+    ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'K', 'Q', 'A']
     suits = ['\u2660', '\u2661', '\u2662', '\u2663']
     for rank in ranks:
         for suit in suits:
@@ -27,95 +27,115 @@ def makeDeck():
     random.shuffle(deck)
     return deck 
 
-
-def check(user1, user2):
-    '''(list, list)->dict
-    Function takes two lists representing the cards that each user has.
-    Returns a dictionary of each user and their scores.
+def dealCard(deck, user):
+    '''(list, list)->list
+    Function takes two inputs, one representing the deck of cards and one representing the cards a user has.
+    The function returns the users cards with another card from the deck added to it.
     '''
-    cardValue = {
-        '2': 2, '3': 3,
-        '4': 4, '5': 5,
-        '6': 6, '7': 7,
-        '8': 8, '9': 9,
-        'J': 10, 'Q': 10,
-        'K': 10, 'A': [1,11]
+    user.append(deck.pop())
+    return user
+
+def calculateScore(user):
+    '''(list of str)->int
+    Function takes a list representing a hand of cards.
+    It returns the value of the score associated with the hand.
+    Precondition: user is a list with each item being of the format ['rank+suit']
+    '''
+    scoreMap = {
+        2: ['2\u2660', '2\u2661', '2\u2662', '2\u2663'],
+        3: ['3\u2660', '3\u2661', '3\u2662', '3\u2663'],
+        4: ['4\u2660', '4\u2661', '4\u2662', '4\u2663'],
+        5: ['5\u2660', '5\u2661', '5\u2662', '5\u2663'],
+        6: ['6\u2660', '6\u2661', '6\u2662', '6\u2663'],
+        7: ['7\u2660', '7\u2661', '7\u2662', '7\u2663'],
+        8: ['8\u2660', '8\u2661', '8\u2662', '8\u2663'],
+        9: ['9\u2660', '9\u2661', '9\u2662', '9\u2663'],
+        10: ['10\u2660', '10\u2661', '10\u2662', '10\u2663', 'J\u2660', 'J\u2661', 'J\u2662', 'J\u2663',
+        'Q\u2660', 'Q\u2661', 'Q\u2662', 'Q\u2663', 'K\u2660', 'K\u2661', 'K\u2662', 'K\u2663'],
+        11: ['A\u2660', 'A\u2661', 'A\u2662', 'A\u2663'],
     }
-    player1Total = 0
-    player2Total = 0
+    score = 0 
+    for i in scoreMap:
+        for j in user:
+            if j in scoreMap[i] and i!=11:
+                score = score + i
+            elif j in scoreMap[i] and i==11:
+                if score + i >21:
+                    score = score + 1
+                else:
+                    score = score + 11
+    if score==21: return 0
+    return score
 
-    for i in user1:
-        if i[0]=='A':
-            if player1Total + 11 > 21:
-                player1Total = player1Total + cardValue[i[0]][0]
-            else:
-                player1Total = player1Total + cardValue[i[0]][1]
-        else:
-            player1Total = player1Total + cardValue[i[0]]
-    for i in user2:
-        if i[0]=='A':
-            if player2Total + 11 > 21:
-                player2Total = player2Total + cardValue[i[0]][0]
-            else:
-                player2Total = player2Total + cardValue[i[0]][1]
-        else:
-            player2Total = player2Total + cardValue[i[0]]    
+def compareScore(scorePlayer, scoreDealer):
+    if scorePlayer==21 and scoreDealer==21:
+        print("Draw!")
+        return False
+    elif scorePlayer==21:
+        print("Congratulations, you win!")
+        return False
+    elif scoreDealer==21:
+        print("Blackjack! Dealer wins.")
+        return False
+    elif scorePlayer>21:
+        print("You bust! Dealer wins.")
+        return False
+    elif scoreDealer>21:
+        print('Dealer busts! You win.')
+        return False
+    else:
+        return True 
 
-    userDict = {
-        1: player1Total,
-        2: player2Total
-    }
-    return userDict
+def pickAnotherCard():
+    flag = True
+    while flag:
+        inputUser = input("Type 'y' to get another card, type 'n' to pass: ")
+        if inputUser not in ['y','n']:
+            print("Please enter 'y' or 'n' only.")
+        else: 
+            flag = False
+    return inputUser  
 
-# main
-def blackjack(deck, player, dealer):
-    checkScores = check(player, dealer)
-    print(f"\tYour card: {player}, current score: {checkScores[1]}")
+def blackjack():
+    deck = makeDeck()
+    player = [deck.pop(), deck.pop()]
+    dealer = [deck.pop(), deck.pop()]
+    scorePlayer = calculateScore(player)
+    scoreDealer = calculateScore(dealer)
+
+    print(f"\tYour cards: {player}, current score: {scorePlayer}")
     print(f"\tComputer's first card: {dealer[0]}")
 
-    if checkScores[1]==21 and checkScores[2]==21:
-        print("Draw!")
-        return
-    elif checkScores[1]==21:
-        print("You win!")
-        return
-    elif checkScores[2]==21:
-        print("You lose. Dealer wins!")
-        return
-    elif checkScores[1]>21:
-        print("You lose! You bust.")
-        return
-    elif checkScores[2]>21:
-        print("You win! Dealer bust.")
-        return
+    flag = compareScore(scorePlayer, scoreDealer)
 
-
-    continueDeal = input("Type 'y' to get another card, type 'n' to pass: ").lower().strip()
-    flag = True 
-    while True:
-        if continueDeal=='y':
+    while flag:
+        userInput = pickAnotherCard()
+        if userInput=='y':
             player.append(deck.pop())
-            flag = False 
-            blackjack(deck, player, dealer)
-        elif continueDeal=='n':
+            scorePlayer = calculateScore(player)
+            print(f"\tYour cards: {player}, current score: {scorePlayer}")
+            print(f"\tComputer's first card: {dealer[0]}")
+            flag = compareScore(scorePlayer, scoreDealer)
+        elif userInput=='n':
             dealer.append(deck.pop())
-            flag = False
-            blackjack(deck,player,dealer)
-        else:
-            print("Please enter 'y' or 'n'.")
-    
-flag = True 
+            scoreDealer = calculateScore(dealer)
+            print(f"\tYour cards: {player}, current score: {scorePlayer}")
+            print(f"\tComputer's first card: {dealer[0]}")
+            flag = compareScore(scorePlayer, scoreDealer)
+    print(f"\tYour final hand: {player}, final score: {scorePlayer}")
+    print(f"\tComputer's final hand: {dealer}, final score: {scoreDealer}")
+
+
+# main
+flag = True
 while flag:
-    playGame = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ").lower().strip()
-    if playGame == 'y':
+    continuePlaying = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ").lower().strip()
+    if continuePlaying == 'y': 
         print("\033c")
         blackjackArt()
-        deck = makeDeck()
-        player = [deck.pop(), deck.pop()]
-        dealer = [deck.pop(), deck.pop()]
-        blackjack(deck, player, dealer)
-    elif playGame == 'n':
-        print("Thank you for playing. Goodbye!")
-        flag= False 
+        blackjack()
+    elif continuePlaying=='n':
+        print("Thank you for playing. Have a good day!")
+        flag = False
     else:
-        print("Please enter 'y' or 'n'.")
+        print("Please enter 'y' or 'n'")
