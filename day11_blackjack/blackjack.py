@@ -139,7 +139,6 @@ def blackjack():
     print(f"\tYour final hand: {player}, final score: {scorePlayer}")
     print(f"\tComputer's final hand: {dealer}, final score: {scoreDealer}")
 
-
 # main
 
 flag = True
