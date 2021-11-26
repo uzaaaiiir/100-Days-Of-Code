@@ -1,5 +1,8 @@
 import random
 
+EASY = 10
+HARD = 5
+
 def guess_art():
     art = '''
     .----------------.  .----------------.  .----------------.  .----------------.  .----------------. 
@@ -47,13 +50,11 @@ def guess_number(number, lives):
             print(f"You got it! The answer was {number}")
         
 guess_art()
-print("Welcome to the Number Guessing Game!")
-number = random.randint(0,100)
-print("I Am thinking of a number between 1 and 100.")
-print(f"Psst, the correct answer is {number}")
+number = random.randint(1,100)
 
-EASY = 10
-HARD = 5
+print("Welcome to the Number Guessing Game!")
+print("I am thinking of a number between 1 and 100.")
+print(f"Psst, the correct answer is {number}")
 
 flag = True
 while flag:
