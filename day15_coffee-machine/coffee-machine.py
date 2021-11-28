@@ -1,4 +1,3 @@
-
 MENU = {
     "espresso": {
         "ingredients": {
@@ -67,6 +66,10 @@ def checkResources(userDrink, resources, MENU):
     return True
 
 def processCoins():
+    '''(None)->float
+    Function prompts the user to enter the number of coins they are giving in quarters, dimes, nickels, pennies.
+    The function returns the amount based on the coins given by the user.
+    '''
     print("Please insert coins.")
     quarters = int(input("How many quarters?: "))
     dimes = int(input("How many dimes?: "))
@@ -76,13 +79,19 @@ def processCoins():
     return amountGiven
 
 def updateResources(userChoice, MENU, resources):
+    '''(str, dict of dicts, dict)->dict
+    Function takes as input the users choice, the dict representing the menu, and a dict representing the available resources.
+    Function returns the resources updated based on the choice of drink the user chose.
+    Preconditions: userChoice is a valid drink in the MENU
+    '''
     drinkResources = MENU[userChoice]["ingredients"]
     for ingredient in drinkResources:
         resources[ingredient] = resources[ingredient] - drinkResources[ingredient]
     resources["money"] = resources["money"] + MENU[userChoice]["cost"]
     return resources
 
-# TODO: Prompt user for what they would like 
+# main
+print("\033c") 
 machine_Status = True
 while machine_Status:
     userChoice = getInput()
