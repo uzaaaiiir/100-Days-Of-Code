@@ -97,9 +97,9 @@ higherlowerArt()
 flag = True 
 while flag:
     # Print Options 
-    print(f"Compare A: {optionA['name']}, a {optionA['description']}, from {optionA['country']}")
+    print(f"Compare A: {optionA['name']}, a {optionA['description']}, from {optionA['country']}.")
     vs()
-    print(f"Against B: {optionB['name']}, a {optionB['description']}, from {optionB['country']}")
+    print(f"Against B: {optionB['name']}, a {optionB['description']}, from {optionB['country']}.")
 
     # Get user choice and makes sure the input is valid 
     userChoice = userInput()
