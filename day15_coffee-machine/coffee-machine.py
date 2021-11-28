@@ -129,8 +129,3 @@ while machine_Status:
     # Turns off the coffee machine 
     elif userChoice == 'off':
         machine_Status = False 
-
-    
-
-
-
