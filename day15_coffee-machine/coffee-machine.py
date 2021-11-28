@@ -24,12 +24,14 @@ MENU = {
     }
 }
 
+
 resources = {
     "water": 300,
     "milk": 200,
     "coffee": 100,
     "money": 0,
 }
+
 
 def printReport(resources):
     '''(dict)->None
@@ -39,6 +41,7 @@ def printReport(resources):
     print(f'Milk: {resources["milk"]}mL')
     print(f'Coffee: {resources["coffee"]}g')
     print(f'Money: ${resources["money"]}')
+
 
 def getInput():
     '''(None)->str
@@ -51,6 +54,7 @@ def getInput():
         if userChoice in ['espresso', 'latte', 'cappuccino', 'report', 'off']:
             correct_Input = False
     return userChoice
+
 
 def checkResources(userDrink, resources, MENU):
     '''(dict, str, dict of dicts)->str
@@ -65,6 +69,7 @@ def checkResources(userDrink, resources, MENU):
             return False
     return True
 
+
 def processCoins():
     '''(None)->float
     Function prompts the user to enter the number of coins they are giving in quarters, dimes, nickels, pennies.
@@ -78,6 +83,7 @@ def processCoins():
     amountGiven = (0.25 * quarters) + (0.1 * dimes) + (0.05 * nickels) + (0.01 * pennies)
     return amountGiven
 
+
 def updateResources(userChoice, MENU, resources):
     '''(str, dict of dicts, dict)->dict
     Function takes as input the users choice, the dict representing the menu, and a dict representing the available resources.
@@ -89,6 +95,7 @@ def updateResources(userChoice, MENU, resources):
         resources[ingredient] = resources[ingredient] - drinkResources[ingredient]
     resources["money"] = resources["money"] + MENU[userChoice]["cost"]
     return resources
+
 
 # main
 
