@@ -26,10 +26,10 @@ def distinctOption(optionsAmount, optionA):
     Takes a dictionary representing a person and the number of items in a list of dicts.
     Returns a random item in the list of dicts that is not the same as optionA.
     '''
-    optionBIndex = random.randint(0,optionsAmount-1)
+    optionBIndex = random.randint(0, optionsAmount-1)
     optionB = game_data.data[optionBIndex]
     while optionB==optionA:
-        optionB = game_data.data[random.randint(0,optionsAmount-1)]
+        optionB = game_data.data[random.randint(0, optionsAmount-1)]
     return optionB
     
 def checkScore(userChoice, answer, score):
@@ -58,12 +58,12 @@ def checkAnswer(optionA, optionB):
     Preconditions: optinoA and optionB are represented as dictionaries.
     '''
     answer = []
-    if optionA['follower_count']>optionB['follower_count']:
+    if optionA['follower_count'] > optionB['follower_count']:
         answer=['A']
-    elif optionA['follower_count']<optionB['follower_count']:
+    elif optionA['follower_count'] < optionB['follower_count']:
         answer=['B']
     else:
-        answer=['A','B']
+        answer=['A', 'B']
     return answer
 
 def userInput():
@@ -84,7 +84,7 @@ score = 0
 optionsAmount = len(game_data.data)
 
 # Set initial Options 
-optionAIndex = random.randint(0,optionsAmount-1)
+optionAIndex = random.randint(0, optionsAmount-1)
 optionA = game_data.data[optionAIndex]
 optionB = distinctOption(optionsAmount, optionA)
 
