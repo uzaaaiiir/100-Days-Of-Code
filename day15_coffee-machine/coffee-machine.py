@@ -91,21 +91,35 @@ def updateResources(userChoice, MENU, resources):
     return resources
 
 # main
+
 print("\033c") 
 machine_Status = True
 while machine_Status:
+    # Gets users choice 
     userChoice = getInput()
+
+    # Prints the report of available resources 
     if userChoice == 'report':
         printReport(resources)
+
+    # Based on user input, gets coins from the user
     elif userChoice in ['latte', 'espresso', 'cappuccino']:
+
+        # Checks if there's enough resources to make drink
         if checkResources(userChoice, resources, MENU):
             coinsGiven = processCoins()
+
+            # If coins are sufficient, gives the change, and updates the resources
             if coinsGiven >= MENU[userChoice]["cost"]:
                 print(f'Here is ${round((coinsGiven - MENU[userChoice]["cost"]),2)} in change.')
                 print(f'Here is your {userChoice} ☕. Enjoy!')
                 resources = updateResources(userChoice, MENU, resources)
+
+            # If coins are insufficient, refunds the user
             else:
                 print("Sorry, that's not enough money. Money refunded.")
+    
+    # Turns off the coffee machine 
     elif userChoice == 'off':
         machine_Status = False 
 
