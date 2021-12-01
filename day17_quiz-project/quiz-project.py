@@ -22,3 +22,7 @@ class Quiz:
     
     def __gt__(self,other):
         return self.questions>other.questions
+    
+    def __ge__(self,other):
+        return self.questions>=other.questions
+    
