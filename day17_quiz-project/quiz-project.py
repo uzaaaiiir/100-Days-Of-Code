@@ -16,3 +16,9 @@ class Quiz:
     
     def __add__(self,other):
         return self.questions+other.questions
+
+    def __le__(self,other):
+        return self.questions<=other.questions
+    
+    def __gt__(self,other):
+        return self.questions>other.questions
