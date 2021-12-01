@@ -8,3 +8,11 @@ class Quiz:
     def __str__(self):
         return f"{self.questions}"
 
+    def __eq__(self,other):
+        return self.questions==other.questions
+    
+    def __lt__(self,other):
+        return self.questions<other.questions
+    
+    def __add__(self,other):
+        return self.questions+other.questions
