@@ -4,3 +4,7 @@ class Quiz:
     
     def __repr__(self):
         return f"{self.questions}"
+    
+    def __str__(self):
+        return f"{self.questions}"
+
