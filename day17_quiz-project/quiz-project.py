@@ -26,3 +26,4 @@ class Quiz:
     def __ge__(self,other):
         return self.questions>=other.questions
     
+x = Quiz(5)
