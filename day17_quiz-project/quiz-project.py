@@ -31,3 +31,5 @@ y = Quiz(6)
 print(x>=y)
 print(x)
 print(y)
+z = x + y
+print(z)
