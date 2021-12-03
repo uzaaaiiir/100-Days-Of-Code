@@ -28,6 +28,3 @@ class Quiz:
     
 x = Quiz(5)
 y = Quiz(6)
-
-z = x + y
-print(z)
