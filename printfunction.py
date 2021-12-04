@@ -4,3 +4,6 @@
 s = 'hello'
 print(s.capitalize())
 print()
+
+
+print(s.count('e'))
