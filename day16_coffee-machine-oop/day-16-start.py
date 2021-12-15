@@ -14,3 +14,16 @@ timmy.color("coral")
 timmy.forward(100)
 
 my_screen.exitonclick()
+
+table = prettytable.PrettyTable()
+table.field_names = ["Pokemon Name", "Type"]
+table.add_rows(
+    [
+        ["Pickachu", "Electric"],
+        ["Squirtle", "Water"],
+        ["Charmander", "Fire"]
+    ]
+)
+
+table.align = "l"
+print(table)
