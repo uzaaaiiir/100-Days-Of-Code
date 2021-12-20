@@ -14,8 +14,7 @@ def randomColor():
 for i in range(10,360,10):
     tim.color(randomColor())
     tim.circle(100)
-    current_heading = tim.heading()
-    tim.setheading(current_heading + 10)
+    tim.setheading(tim.heading() + 10)
 
 screen = turtle.Screen()
 screen.exitonclick()
