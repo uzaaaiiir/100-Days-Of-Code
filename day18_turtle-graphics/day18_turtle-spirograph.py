@@ -11,10 +11,10 @@ def randomColor():
     b = random.randint(0,255)
     return (r,g,b)
 
-for i in range(10,360,10):
+for i in range(5,360,5):
     tim.color(randomColor())
     tim.circle(100)
-    tim.setheading(tim.heading() + 10)
+    tim.setheading(tim.heading() + 5)
 
 screen = turtle.Screen()
 screen.exitonclick()
