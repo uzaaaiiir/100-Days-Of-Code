@@ -19,6 +19,7 @@ for i in range(len(colors)):
     new_turtle.penup()
     new_turtle.color(colors[i])
     n = 33.3
+    # Turtle are 40 pixels wide
     new_turtle.goto(x = -230, y = -100 + i*n)
     turtles.append(new_turtle)
 
