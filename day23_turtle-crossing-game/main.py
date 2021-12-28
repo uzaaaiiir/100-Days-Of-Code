@@ -27,9 +27,9 @@ while game_is_on:
     cars.create_car()
     cars.move_cars()
 
-    # Detect collissions
+    # Detect collissions with cars
     for car in cars.all_cars: 
-        if turtle_player.distance(car)<25:
+        if turtle_player.distance(car) < 20:
             game_is_on = False 
             scoreboard.game_over()
     
