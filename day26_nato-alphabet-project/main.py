@@ -16,13 +16,15 @@ import pandas
 {"A": "Alfa", "B": "Bravo"}
 
 
-with open("nato_phonetic_alphabet.csv") as nato_alphabet:
-    nato_alphabet = [alphabet.strip("\n") for alphabet in nato_alphabet.readlines()]
-    nato_alphabet = [item.split(',') for item in nato_alphabet]
+# with open("nato_phonetic_alphabet.csv") as nato_alphabet:
+#     nato_alphabet = [alphabet.strip("\n") for alphabet in nato_alphabet.readlines()]
+#     nato_alphabet = [item.split(',') for item in nato_alphabet]
+# nato_dict = {item[0]:item[1] for item in nato_alphabet}
 
-nato_dict = {item[0]:item[1] for item in nato_alphabet}
-# print(nato_dict)
 
+nato_alphabet = pandas.read_csv("nato_phonetic_alphabet.csv")
+nato_dict = {row.letter:row.code for (index, row) in nato_alphabet.iterrows()}
+print(nato_dict)
 
 #TODO 2. Create a list of the phonetic code words from a word that the user inputs.
 user_input = input("Enter a Word: ")
