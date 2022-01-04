@@ -3,8 +3,8 @@ from tkinter import *
 FONT = ("Arial", 10, "normal")
 
 def button_click():
-    km = round((float(miles_entry.get()) * 1.60934),2)
-    km_result_label.config(text=km)
+    km = round((float(miles_entry.get()) * 1.60934),3)
+    km_result_label.config(text=f"{km}")
 
 window = Tk()
 window.title("Miles to Km Converter")
